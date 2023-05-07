@@ -227,7 +227,7 @@ $( ".lammoipopupnhantien" ).hover(
               'stopAngle'    : 0,
           },
           'pins': {
-              'number': 20, // Số lượng chân. Họ không gian đều xung quanh bánh xe.
+              'number': 100, // Số lượng chân. Họ không gian đều xung quanh bánh xe.
               'responsive': true,
               'fillStyle': 'silver',
               'outerRadius': 4,
@@ -301,7 +301,8 @@ $( ".lammoipopupnhantien" ).hover(
               wheelSpinning = true;
           }
           if (dem < solanquay) {
-          dangquay.play();
+            dangquay.currentTime = 6.2;
+            dangquay.play();
           }
       }
       
@@ -356,7 +357,8 @@ $( ".lammoipopupnhantien" ).hover(
       function alertPrize(indicatedSegment) {
           dem++;
           tiendalixi=indicatedSegment.text.replace(".000 VNĐ", "");
-
+          var dangquay = document.getElementById("dangquay");
+          dangquay.pause();
           if (dem < solanquay) { // Check xem đã hết lượt quay chưa
               theWheel.rotationAngle = 0; // Đặt lại góc bánh xe về 0 độ.
               theWheel.draw(); // Gọi draw để hiển thị các thay đổi cho bánh xe.
