@@ -21,6 +21,11 @@
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
       <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
       <script src="./config.js"></script>
+      <style>
+        .swal2-html-container{
+          color: aliceblue;
+        }
+      </style>
    </head>
 <div class="pyro">
   <div class="before" style="z-index: 9999"></div>
@@ -379,12 +384,13 @@ $( ".lammoipopupnhantien" ).hover(
                   document.getElementById("xuatsotien").src = ""; // Xoá ảnh tiền
                   const urlMoney = "img/cn.jpg";
                   Swal.fire({
-                    title: 'Ôi không!',
+                    title: "<h3 style='color:white'>" + 'Ôi không!' + "</h3>",
                     text: 'Bạn đã nhận được cái nịt!',
                     imageUrl: urlMoney,
                     imageWidth: 400,
                     imageHeight: 200,
                     imageAlt: 'Custom image',
+                    background: '#CD3333',
                   })
 
                   // swal("Rất tiếc!", "Bạn không nhận được đồng nào\nNhưng bạn còn lại " + (solanquay - dem) + " lần quay, cố gắng lên nào!", "error");
@@ -396,12 +402,14 @@ $( ".lammoipopupnhantien" ).hover(
                   const urlMoney = "img/" + indicatedSegment.text.replace(".000 VNĐ", "") + "kk.jpg";
                   const text = "Bạn nhận được " + indicatedSegment.text;
                   Swal.fire({
-                    title: 'Xin chúc mừng!',
+                    title: "<h3 style='color:white'>" + 'Xin chúc mừng' + "</h3>",
                     text: text,
                     imageUrl: urlMoney,
                     imageWidth: 400 + (indicatedSegment.text.replace(".000 VNĐ", "").length > 1 ? 100 : 0),
                     imageHeight: 200,
                     imageAlt: 'Custom image',
+                    background: '#CD3333',
+                    //text col
                   })
                   // swal("Tết ấm no!", "Bạn nhận được " + indicatedSegment.text + "\nBạn còn lại " + (solanquay - dem) + " lần quay\nChú ý: Nếu quay tiếp bạn sẽ mất số tiền trước đó!", "success");
               }

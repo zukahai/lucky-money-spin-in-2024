@@ -1,26 +1,53 @@
 /* CSS */
-body{
-    font-weight: bold;
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
 }
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
 #raties-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-  }
-  
-  #raties-table th,
-  #raties-table td {
-    padding: 8px;
-    text-align: center;
-    border: 1px solid #ccc;
-  }
-  
-  #raties-table th {
-    background-color: #f2f2f2;
-  }
-  
-  #raties-table td input[type="number"] {
-    width: 300px;
-  }
-  
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+#raties-table th {
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+  text-align: left;
+  padding: 10px;
+}
+
+#raties-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+#raties-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#save-button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#save-button:hover {
+  background-color: #3e8e41;
+}
