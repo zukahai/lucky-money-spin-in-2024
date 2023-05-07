@@ -11,6 +11,13 @@
 </head>
 <body>
     <div class="container">
+      <div class="button-list">
+        <ul>
+          <li><button id="setting1" onclick="changeSetting(1)">Setting 1</button></li>
+          <li><button id="setting2" onclick="changeSetting(2)">Setting 2</button></li>
+          <li><button id="setting3" onclick="changeSetting(3)">Setting 3</button></li>
+        </ul>
+      </div>
     <!-- HTML -->
 <table id="raties-table">
     <thead>
@@ -25,16 +32,22 @@
     </tbody>
   </table>
   <button id="save-button">Lưu</button>
-  
     </div>
+
+    
 </body>
 <script>
     // JavaScript
 // Lấy dữ liệu từ Local Storage
 function getData(){
-    const storedRaties = localStorage.getItem('raties');
+    const storedSetting = localStorage.getItem('setting');
+    const setting = storedSetting ? storedSetting : "setting1";
+    const storedRaties = localStorage.getItem(setting);
     const raties = storedRaties ? JSON.parse(storedRaties) : (CONFIG.raties);
     console.log((raties));
+
+    $('#' + setting).css('background-color', 'cyan');
+    $('#' + setting).css('color', 'black');
 
     // Tạo bảng HTML và đổ dữ liệu
 
@@ -61,6 +74,20 @@ function getData(){
         });
         inputCell.appendChild(input);
     });
+    localStorage.setItem('raties', JSON.stringify(raties));
+}
+
+function changeSetting(index) {
+  const storedSetting = localStorage.getItem('setting');
+  let setting = storedSetting ? storedSetting : "setting1";
+  $('#' + setting).removeAttr("style");
+  setting = 'setting' + index;
+
+  $('#' + setting).css('background-color', 'cyan');
+  $('#' + setting).css('color', 'black');
+
+  localStorage.setItem('setting', setting);
+  getData();
 }
 
 getData();
@@ -70,6 +97,9 @@ getData();
 const saveButton = document.querySelector('#save-button');
 
 saveButton.addEventListener('click', () => {
+  const storedSetting = localStorage.getItem('setting');
+  const setting = storedSetting ? storedSetting : "setting1";
+
   const tableRows = document.querySelectorAll('#raties-table tbody tr');
   const raties = {};
 
@@ -79,7 +109,7 @@ saveButton.addEventListener('click', () => {
     raties[level] = points;
   });
 
-  localStorage.setItem('raties', JSON.stringify(raties));
+  localStorage.setItem(setting, JSON.stringify(raties));
   //reset table
   getData();
 });
