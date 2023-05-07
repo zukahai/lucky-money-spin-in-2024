@@ -221,6 +221,13 @@
          display: flex;
          justify-content: center;
          align-items: center;
+         margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+          margin-top: 30px;
          }
          .nutbatdau{
          background-image: url('../img/contro.png');
@@ -242,17 +249,17 @@
          }
 
 
-         @media only screen and (max-width: 400px) {
-  .responsive {
-    width: 200px;
-    height: 150px;
-    margin-bottom: 45px;
-  }
-  .responsive2 {
-    width: 200px;
-    height: 200px;
-  }
-}
+         @media only screen and (max-width: 700px) {
+          .responsive {
+            width: 200px;
+            height: 150px;
+            margin-bottom: 35%;
+          }
+          .responsive2 {
+            width: 200px;
+            height: 200px;
+          }
+        }
 
 @media only screen and (max-width: 700px) {
   .responsive3 {
