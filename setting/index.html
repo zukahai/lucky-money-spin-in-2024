@@ -38,13 +38,22 @@
 </body>
 <script>
     // JavaScript
+
+function init() {
+  localStorage.setItem('setting', 'setting1');
+  localStorage.setItem('setting1', JSON.stringify(CONFIG.raties));
+  localStorage.setItem('setting2', JSON.stringify(CONFIG.raties));
+  localStorage.setItem('setting3', JSON.stringify(CONFIG.raties));
+}
+
 // Lấy dữ liệu từ Local Storage
 function getData(){
     const storedSetting = localStorage.getItem('setting');
+    if (!storedSetting) init();
     const setting = storedSetting ? storedSetting : "setting1";
     const storedRaties = localStorage.getItem(setting);
     const raties = storedRaties ? JSON.parse(storedRaties) : (CONFIG.raties);
-    console.log((raties));
+    // console.log((raties));
 
     $('#' + setting).css('background-color', 'cyan');
     $('#' + setting).css('color', 'black');
@@ -105,7 +114,8 @@ saveButton.addEventListener('click', () => {
 
   tableRows.forEach((row, index) => {
     const level = index === 0 ? '0' : row.cells[0].innerText;
-    const points = parseInt(row.cells[3].querySelector('input').value);
+    let points = parseInt(row.cells[3].querySelector('input').value);
+    points = isNaN(points) ? 0 : points;
     raties[level] = points;
   });
 
