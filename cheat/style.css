@@ -1,0 +1,26 @@
+/* CSS */
+body{
+    font-weight: bold;
+}
+#raties-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+  
+  #raties-table th,
+  #raties-table td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  #raties-table th {
+    background-color: #f2f2f2;
+  }
+  
+  #raties-table td input[type="number"] {
+    width: 300px;
+  }
+  

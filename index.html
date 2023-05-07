@@ -253,11 +253,11 @@ $( ".lammoipopupnhantien" ).hover(
       
       function playSound() {
           // Dừng và tua lại âm thanh nếu nó đã phát.
-          audio.pause();
-          audio.currentTime = 0;
+          // audio.pause();
+          // audio.currentTime = 0;
       
-          // Phát âm thanh.
-          audio.play();
+          // // Phát âm thanh.
+          // audio.play();
       }
       
       // -------------------------------------------------------
@@ -268,14 +268,18 @@ $( ".lammoipopupnhantien" ).hover(
       }
 
       function randomAngle() {
+        let raties = JSON.parse(localStorage.getItem("raties"));
+        if (!raties) {
+          localStorage.setItem("raties", JSON.stringify(CONFIG.raties));
+          raties = JSON.parse(localStorage.getItem("raties"));
+        }
         let arr = [];
         let index = 1;
-        for (let k in CONFIG.raties) {
-          arr = arr.concat(Array.from({length: CONFIG.raties[k]}, (_, i) => index));    
+        for (let k in raties) {
+          arr = arr.concat(Array.from({length: raties[k]}, (_, i) => index));    
           index++;  
         }
         let randomIndex = Math.floor(Math.random() * 10000000) % arr.length;
-        console.log(arr[randomIndex]);
         return arr[randomIndex] * 36 - Math.random() * 34 - 1;
       }
       
