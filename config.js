@@ -1,5 +1,5 @@
 const CONFIG = {
-    titleWeb: "Lì xì 2024",
+    titleWeb: "Lì xì năm 2024",
     raties: {
         '0': 10, //mat luot
         '1': 10, // 1000
