@@ -369,7 +369,8 @@ $( ".lammoipopupnhantien" ).hover(
           var dangquay = document.getElementById("dangquay");
           dangquay.pause();
           if (dem < solanquay) { // Check xem đã hết lượt quay chưa
-              theWheel.rotationAngle = 0; // Đặt lại góc bánh xe về 0 độ.
+              // theWheel.rotationAngle = 0; // Đặt lại góc bánh xe về 0 độ.
+              theWheel.rotationAngle  = theWheel.rotationAngle + 36000;
               theWheel.draw(); // Gọi draw để hiển thị các thay đổi cho bánh xe.
               wheelSpinning = false; // Đặt lại thành false thành các nút nguồn và quay có thể được bấm lại.
       
