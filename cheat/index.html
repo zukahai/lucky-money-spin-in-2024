@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setup</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="../config.js"></script>
 </head>
 <body>
     <div class="container">
@@ -31,7 +32,7 @@
 // Lấy dữ liệu từ Local Storage
 function getData(){
     const storedRaties = localStorage.getItem('raties');
-    const raties = storedRaties ? JSON.parse(storedRaties) : {};
+    const raties = storedRaties ? JSON.parse(storedRaties) : JSON.parse(CONFIG.raties);
 
     // Tạo bảng HTML và đổ dữ liệu
 
