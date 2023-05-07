@@ -10,7 +10,7 @@
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Vòng quay lì xì 2020 by GrouSrlpPrsc</title>
+      <title id="titleWeb">Lì xì 2024</title>
       <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Francois+One&amp;display=swap'>
       <link rel='stylesheet' href='css/sweetalert.css'>
       <link rel='stylesheet' href='css/custom.css'>
@@ -18,12 +18,9 @@
       <script type="text/javascript" src="js/TweenMax.min.js"></script>
       <script src='js/sweetalert-dev.js'></script>
       <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> 
-      <script src="
-        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js
-        "></script>
-        <link href="
-        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css
-        " rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
+      <script src="./config.js"></script>
    </head>
 <div class="pyro">
   <div class="before" style="z-index: 9999"></div>
@@ -152,10 +149,10 @@ $( ".lammoipopupnhantien" ).hover(
           'numSegments': 10, // Số ô
           'responsive': true,
           'segments': [{
-              'fillStyle': '#910f06',
+              'fillStyle': '#FF0000',
               'text': 'Ô mất lượt',
               'size': winwheelPercentToDegrees(10),
-              'textFontSize': 30,
+              'textFontSize': 25,
               'textFillStyle': '#ffffff'
           }, {
               'fillStyle': '#ab6f03',
@@ -164,52 +161,52 @@ $( ".lammoipopupnhantien" ).hover(
               'textFontSize': 28,
               'textFillStyle': '#ffffff'
           }, {
-              'fillStyle': '#910f06',
+              'fillStyle': '#CC9966',
               'text': '2.000 VNĐ',
               'size': winwheelPercentToDegrees(10),
               'textFontSize': 26,
               'textFillStyle': '#ffffff'
           }, {
-              'fillStyle': '#ab6f03',
+              'fillStyle': '#666633',
               'text': '5.000 VNĐ',
               'size': winwheelPercentToDegrees(10),
               'textFontSize': 24,
               'textFillStyle': '#ffffff'
           }, {
-              'fillStyle': '#910f06',
+              'fillStyle': '#CC9933',
               'text': '10.000 VNĐ',
               'size': winwheelPercentToDegrees(10),
               'textFontSize': 22,
               'textFillStyle': '#ffffff'
           }, {
-              'fillStyle': '#7b8f03',
+              'fillStyle': '#0099FF',
               'text': '20.000 VNĐ',
               'size': winwheelPercentToDegrees(10),
               'textFontSize': 20,
               'textFillStyle': '#ffffff'
           }, {
-              'fillStyle': '#910f06',
+              'fillStyle': '#FF9999',
               'text': '50.000 VNĐ',
               'size': winwheelPercentToDegrees(10),
               'textFontSize': 18,
               'textFillStyle': '#ffffff'
           },
           {
-              'fillStyle': '#ab6f03',
+              'fillStyle': '#00FF66',
               'text': '100.000 VNĐ',
               'size': winwheelPercentToDegrees(10),
               'textFontSize': 16,
               'textFillStyle': '#ffffff'
           },
           {
-              'fillStyle': '#ab6f03',
+              'fillStyle': '#FF9966',
               'text': '200.000 VNĐ',
               'size': winwheelPercentToDegrees(10),
               'textFontSize': 16,
               'textFillStyle': '#ffffff'
           },
           {
-              'fillStyle': '#ab6f03',
+              'fillStyle': '#00FFFF',
               'text': '500.000 VNĐ',
               'size': winwheelPercentToDegrees(10),
               'textFontSize': 16,
@@ -269,15 +266,24 @@ $( ".lammoipopupnhantien" ).hover(
       function laypower() {
           wheelPower = document.getElementById("manhornhe").value; // Lấy dữ liệu thanh range
       }
+
+      function randomAngle() {
+        let arr = [];
+        let index = 1;
+        for (let k in CONFIG.raties) {
+          arr = arr.concat(Array.from({length: CONFIG.raties[k]}, (_, i) => index));    
+          index++;  
+        }
+        let randomIndex = Math.floor(Math.random() * 10000000) % arr.length;
+        console.log(arr[randomIndex]);
+        return arr[randomIndex] * 36 - Math.random() * 34 - 1;
+      }
       
       // -------------------------------------------------------
       // Sau khi nhấp vào nút quay
       // -------------------------------------------------------
       function startSpin() {
-        theWheel.animation.stopAngle = 360 * Math.random();
-        if (Math.random() < 0.2) {
-          theWheel.animation.stopAngle = 10 * Math.random();
-        } 
+        theWheel.animation.stopAngle = randomAngle();
           // Nút quay không nhấp được khi đang chạy
           if (wheelSpinning == false) {
               // Dựa trên mức công suất được chọn, hãy điều chỉnh số vòng quay cho bánh xe, càng nhiều lần
@@ -365,10 +371,10 @@ $( ".lammoipopupnhantien" ).hover(
 
                   document.getElementById("annhantien").style.display = "none"; // Ẩn nút nhận tiền
                   document.getElementById("xuatsotien").src = ""; // Xoá ảnh tiền
-                  const urlMoney = "img/" + indicatedSegment.text.replace(".000 VNĐ", "") + "k.jpg";
+                  const urlMoney = "img/cn.jpg";
                   Swal.fire({
-                    title: 'Sweet!',
-                    text: 'Modal with a custom image.',
+                    title: 'Ôi không!',
+                    text: 'Bạn đã nhận được cái nịt!',
                     imageUrl: urlMoney,
                     imageWidth: 400,
                     imageHeight: 200,
@@ -387,7 +393,7 @@ $( ".lammoipopupnhantien" ).hover(
                     title: 'Xin chúc mừng!',
                     text: text,
                     imageUrl: urlMoney,
-                    imageWidth: 600,
+                    imageWidth: 400 + (indicatedSegment.text.replace(".000 VNĐ", "").length > 1 ? 100 : 0),
                     imageHeight: 200,
                     imageAlt: 'Custom image',
                   })
