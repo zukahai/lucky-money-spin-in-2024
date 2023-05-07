@@ -31,7 +31,7 @@
   <div class="before" style="z-index: 9999"></div>
   <div class="after"></div>
 </div>
-   <body onload="nhappass2()">
+   <body onload="nhappass()">
       <div class="topheader">
          <img class="responsive" style="z-index:99;top:50px;" src="img/hea2.png"/>
       </div>
@@ -77,7 +77,6 @@
 
       <audio id="votay"><source src="sound/votay.mp3" type="audio/mpeg"></audio>
       <audio id="matluot"><source src="sound/matluot.mp3" type="audio/mpeg"></audio>
-      <audio id="dangquay"><source src="sound/dangquay.mp3" type="audio/mpeg"></audio>
        
    </body>
    <script>
@@ -90,6 +89,7 @@
     var solanquay = 500;
       // Sau khi load trang sẽ yêu cầu nhập mật khẩu
       function nhappass() {
+        return;
                   swal({
                   title: "Vòng quay bị khoá!",
                   text: "Nhập mật khẩu để mở khoá vòng quay:",
@@ -249,7 +249,7 @@ $( ".lammoipopupnhantien" ).hover(
       let wheelSpinning = false;
       // ---------------------------------------------------------------------
       // Tải âm thanh đánh dấu và chức năng phát được gọi khi pin đi qua con trỏ.
-      let audio = new Audio('http://dougtesting.net//elements/sound/tick.mp3'); // Tạo đối tượng âm thanh và tải tập tin tick.mp3.
+      let audio = new Audio('sound/tick.mp3'); // Tạo đối tượng âm thanh và tải tập tin tick.mp3.
       
       var dem = 0;
       var demnhantien = 0; // Đếm số lần click vào nút nhận tiền
@@ -259,15 +259,16 @@ $( ".lammoipopupnhantien" ).hover(
       document.getElementById("xuatluotquay").innerHTML = solanquay;
       var votay = document.getElementById("votay");
       var matluot = document.getElementById("matluot");
-      var dangquay = document.getElementById("dangquay");
       
       function playSound() {
           // Dừng và tua lại âm thanh nếu nó đã phát.
-          // audio.pause();
-          // audio.currentTime = 0;
+          if (!audio.paused)
+            audio.pause();
+          audio.currentTime = 0;
       
-          // // Phát âm thanh.
-          // audio.play();
+          // Phát âm thanh.
+          if (audio.paused)
+            audio.play();
       }
       
       // -------------------------------------------------------
@@ -277,7 +278,7 @@ $( ".lammoipopupnhantien" ).hover(
           const volum = document.getElementById("range").value; // Lấy dữ liệu thanh range
           votay.volume = volum;
           matluot.volume = volum;
-          dangquay.volume = volum;
+          audio.volume = volum;
       }
 
       function randomAngle() {
@@ -316,10 +317,6 @@ $( ".lammoipopupnhantien" ).hover(
               // Đặt thành true để không thể thay đổi nguồn và bật nút quay lại trong khi
               // hình ảnh động hiện tại. Người dùng sẽ phải thiết lập lại trước khi quay lại.
               wheelSpinning = true;
-          }
-          if (dem < solanquay) {
-            dangquay.currentTime = 6.2;
-            dangquay.play();
           }
       }
       
@@ -374,8 +371,6 @@ $( ".lammoipopupnhantien" ).hover(
       function alertPrize(indicatedSegment) {
           dem++;
           tiendalixi=indicatedSegment.text.replace(".000 VNĐ", "");
-          var dangquay = document.getElementById("dangquay");
-          dangquay.pause();
           if (dem < solanquay) { // Check xem đã hết lượt quay chưa
               // theWheel.rotationAngle = 0; // Đặt lại góc bánh xe về 0 độ.
               theWheel.rotationAngle  = theWheel.rotationAngle + 36000;
