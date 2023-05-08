@@ -292,6 +292,7 @@ body {
     .responsive {
         width: 200px;
         height: 150px;
+        margin: 15%;
     }
     .responsive2 {
         width: 200px;
