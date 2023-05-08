@@ -1,129 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setting</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="../config.js"></script>
 </head>
+
 <body>
     <div class="container">
-      <div class="button-list">
-        <ul>
-          <li><button id="setting1" onclick="changeSetting(1)">Setting 1</button></li>
-          <li><button id="setting2" onclick="changeSetting(2)">Setting 2</button></li>
-          <li><button id="setting3" onclick="changeSetting(3)">Setting 3</button></li>
-        </ul>
-      </div>
-    <!-- HTML -->
-<table id="raties-table">
-    <thead>
-      <tr>
-        <th>Level</th>
-        <th>Content</th>
-        <th>Value</th>
-        <th>Input Value</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-  <button id="save-button">Lưu</button>
+        <div class="button-list">
+            <ul>
+                <li><button id="setting1" onclick="changeSetting(1)">Setting 1</button></li>
+                <li><button id="setting2" onclick="changeSetting(2)">Setting 2</button></li>
+                <li><button id="setting3" onclick="changeSetting(3)">Setting 3</button></li>
+            </ul>
+        </div>
+        <!-- HTML -->
+        <table id="raties-table">
+            <thead>
+                <tr>
+                    <th>Level</th>
+                    <th>Content</th>
+                    <th>Value</th>
+                    <th>Input Value</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <button id="save-button">Lưu</button>
     </div>
 
-    
+
 </body>
 <script>
     // JavaScript
 
-function init() {
-  localStorage.setItem('setting', 'setting1');
-  localStorage.setItem('setting1', JSON.stringify(CONFIG.raties));
-  localStorage.setItem('setting2', JSON.stringify(CONFIG.raties));
-  localStorage.setItem('setting3', JSON.stringify(CONFIG.raties));
-}
+    function init() {
+        localStorage.setItem('setting', 'setting1');
+        localStorage.setItem('setting1', JSON.stringify(CONFIG.raties));
+        localStorage.setItem('setting2', JSON.stringify(CONFIG.raties));
+        localStorage.setItem('setting3', JSON.stringify(CONFIG.raties));
+    }
 
-// Lấy dữ liệu từ Local Storage
-function getData(){
-    const storedSetting = localStorage.getItem('setting');
-    if (!storedSetting) init();
-    const setting = storedSetting ? storedSetting : "setting1";
-    const storedRaties = localStorage.getItem(setting);
-    const raties = storedRaties ? JSON.parse(storedRaties) : (CONFIG.raties);
-    // console.log((raties));
+    // Lấy dữ liệu từ Local Storage
+    function getData() {
+        const storedSetting = localStorage.getItem('setting');
+        if (!storedSetting) init();
+        const setting = storedSetting ? storedSetting : "setting1";
+        const storedRaties = localStorage.getItem(setting);
+        const raties = storedRaties ? JSON.parse(storedRaties) : (CONFIG.raties);
+        // console.log((raties));
 
-    $('#' + setting).css('background-color', 'cyan');
-    $('#' + setting).css('color', 'black');
+        $('#' + setting).css('background-color', 'cyan');
+        $('#' + setting).css('color', 'black');
 
-    // Tạo bảng HTML và đổ dữ liệu
+        // Tạo bảng HTML và đổ dữ liệu
 
-    //reset table
-    document.querySelector('#raties-table tbody').innerHTML = '';
-    const tableBody = document.querySelector('#raties-table tbody');
-    Object.keys(raties).forEach((level, index) => {
-        const row = tableBody.insertRow();
-        const levelCell = row.insertCell(0);
-        const contentCell = row.insertCell(1);
-        const pointCell = row.insertCell(2);
-        const inputCell = row.insertCell(3);
+        //reset table
+        document.querySelector('#raties-table tbody').innerHTML = '';
+        const tableBody = document.querySelector('#raties-table tbody');
+        Object.keys(raties).forEach((level, index) => {
+            const row = tableBody.insertRow();
+            const levelCell = row.insertCell(0);
+            const contentCell = row.insertCell(1);
+            const pointCell = row.insertCell(2);
+            const inputCell = row.insertCell(3);
 
-        contentCell.innerText = ['Mất lượt', '1.000', '2.000', '5.000', '10.000', '20.000', '50.000', '100.000','200.000', '500.000'][index];
-        levelCell.innerText = index === 0 ? 'Mat luot' : level;
-        pointCell.innerText = raties[level];
+            contentCell.innerText = ['Mất lượt', '1.000', '2.000', '5.000', '10.000', '20.000', '50.000', '100.000', '200.000', '500.000'][index];
+            levelCell.innerText = index === 0 ? 'Mat luot' : level;
+            pointCell.innerText = raties[level];
 
-        const input = document.createElement('input');
-        input.type = 'number';
-        input.value = raties[level];
-        input.addEventListener('change', (event) => {
-            raties[level] = parseInt(event.target.value);
-            localStorage.setItem('raties', JSON.stringify(raties));
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.value = raties[level];
+            input.addEventListener('change', (event) => {
+                raties[level] = parseInt(event.target.value);
+                localStorage.setItem('raties', JSON.stringify(raties));
+            });
+            inputCell.appendChild(input);
         });
-        inputCell.appendChild(input);
+        localStorage.setItem('raties', JSON.stringify(raties));
+    }
+
+    function changeSetting(index) {
+        const storedSetting = localStorage.getItem('setting');
+        let setting = storedSetting ? storedSetting : "setting1";
+        $('#' + setting).removeAttr("style");
+        setting = 'setting' + index;
+
+        $('#' + setting).css('background-color', 'cyan');
+        $('#' + setting).css('color', 'black');
+
+        localStorage.setItem('setting', setting);
+        getData();
+    }
+
+    getData();
+
+
+    // JavaScript
+    const saveButton = document.querySelector('#save-button');
+
+    saveButton.addEventListener('click', () => {
+        const storedSetting = localStorage.getItem('setting');
+        const setting = storedSetting ? storedSetting : "setting1";
+
+        const tableRows = document.querySelectorAll('#raties-table tbody tr');
+        const raties = {};
+
+        tableRows.forEach((row, index) => {
+            const level = index === 0 ? '0' : row.cells[0].innerText;
+            let points = parseInt(row.cells[3].querySelector('input').value);
+            points = isNaN(points) ? 0 : points;
+            raties[level] = points;
+        });
+
+        localStorage.setItem(setting, JSON.stringify(raties));
+        //reset table
+        getData();
     });
-    localStorage.setItem('raties', JSON.stringify(raties));
-}
-
-function changeSetting(index) {
-  const storedSetting = localStorage.getItem('setting');
-  let setting = storedSetting ? storedSetting : "setting1";
-  $('#' + setting).removeAttr("style");
-  setting = 'setting' + index;
-
-  $('#' + setting).css('background-color', 'cyan');
-  $('#' + setting).css('color', 'black');
-
-  localStorage.setItem('setting', setting);
-  getData();
-}
-
-getData();
-
-
-// JavaScript
-const saveButton = document.querySelector('#save-button');
-
-saveButton.addEventListener('click', () => {
-  const storedSetting = localStorage.getItem('setting');
-  const setting = storedSetting ? storedSetting : "setting1";
-
-  const tableRows = document.querySelectorAll('#raties-table tbody tr');
-  const raties = {};
-
-  tableRows.forEach((row, index) => {
-    const level = index === 0 ? '0' : row.cells[0].innerText;
-    let points = parseInt(row.cells[3].querySelector('input').value);
-    points = isNaN(points) ? 0 : points;
-    raties[level] = points;
-  });
-
-  localStorage.setItem(setting, JSON.stringify(raties));
-  //reset table
-  getData();
-});
-
-
 </script>
+
 </html>
