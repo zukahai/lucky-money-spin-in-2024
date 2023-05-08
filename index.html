@@ -22,6 +22,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="./config.js"></script>
+    <script src="./js/setting.js"></script>
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
     <style>
         .swal2-html-container {
@@ -132,7 +133,7 @@
 
 <body onload="nhappass()">
     <div class="topheader">
-        <img class="responsive" style="z-index:99;top:50px;" src="img/hea2.png" />
+        <img class="responsive" id="myImg" onclick="changeSetting()" style="z-index:99;top:50px;" src="img/hea2.png" />
     </div>
 
     <div id="caidat">
